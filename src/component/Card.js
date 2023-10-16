@@ -1,8 +1,17 @@
 import React from 'react'
 
-const Card = () => {
+const Card = ({card}) => {
   return (
-    <div>Card</div>
+    <div className="card">
+    <img src={card.img} alt="" />
+    <div className="content">
+      <h2>{card.h2}</h2>
+      <p>{card.p}</p>
+    </div>
+    <div className="buttonContainer">
+      <button>Read More</button>
+    </div>
+  </div>
   )
 }
 

@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
+import Card from './Card';
 
 const LatestArticle = () => {
   const [page, setPage] = useState(1);
@@ -49,13 +50,13 @@ const LatestArticle = () => {
 
   const increasePage = () => {
     if (window.innerWidth < 600) {
-      if (page == cardArr.length) {
+      if (page === cardArr.length) {
         return
       }
       setPage(page+1);
       return cardContainer.current.style.transform += 'translate(-371px)';
     }
-    if (page == cardArr.length / 3) {
+    if (page === cardArr.length / 3) {
       return
     }
     setPage(page + 1);
@@ -64,10 +65,10 @@ const LatestArticle = () => {
 
 
   const decreasePage = () => {
+    if (page === 1) {
+      return
+    }
     if (window.innerWidth < 600) {
-      if (page == 1) {
-        return
-      }
       setPage(page-1);
       return cardContainer.current.style.transform += 'translate(371px)';
     }
@@ -83,17 +84,8 @@ const LatestArticle = () => {
         <div className="container" ref={cardContainer}>
           {
             cardArr.map((card) => (
-
-              <div className="card">
-                <img src={card.img} alt="" />
-                <div className="content">
-                  <h2>{card.h2}</h2>
-                  <p>{card.p}</p>
-                </div>
-                <div className="buttonContainer">
-                  <button>Read More</button>
-                </div>
-              </div>
+              <Card card = {card}/>
+             
             ))
           }
         </div>
